@@ -205,6 +205,7 @@ static void test_parse_invalid_unicode_surrogate() {
     TEST_ERROR(LEPT_PARSE_INVALID_UNICODE_SURROGATE, "\"\\uD800\\uE000\"");
 }
 
+/*json解析函数的测试*/
 static void test_parse() {
     test_parse_null();
     test_parse_true();
@@ -261,6 +262,7 @@ static void test_access_string() {
     lept_free(&v);
 }
 
+/*json值的访问函数的测试*/
 static void test_access() {
     test_access_null();
     test_access_boolean();
