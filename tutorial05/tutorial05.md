@@ -198,9 +198,11 @@ static int lept_parse_value(lept_context* c, lept_value* v) {
 ~~~c
     for (;;) {
         /* bug! */
+        //直接在堆栈上分配下一个json值的空间，然后把从c->json解析出来的lept_value值存储在堆栈上
         lept_value* e = lept_context_push(c, sizeof(lept_value));
         lept_init(e);
         size++;
+        //lept_parse_value会调用lept_context_push函数，lept_context_push函数可能会realloc内存空间，这样会导致e失效，e变成了悬空指针，对其写入解析结果会造成非法访问
         if ((ret = lept_parse_value(c, e)) != LEPT_PARSE_OK)
             return ret;
         /* ... */

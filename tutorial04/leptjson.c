@@ -119,20 +119,20 @@ static void lept_encode_utf8(lept_context* c, unsigned u) {
     else if(u < 0x800)
     {
         PUTC(c, 0xC0 | ((u >> 6) & 0x1F));
-        PUTC(c, 0x80 | (u & 0x3F));
+        PUTC(c, 0x80 | ( u       & 0x3F));
     }
     else if(u < 0x10000)
     {
         PUTC(c, 0xE0 | ((u >> 12) & 0xFF));
         PUTC(c, 0x80 | ((u >>  6) & 0x3F));
-        PUTC(c, 0x80 | ((u) & 0x3F));
+        PUTC(c, 0x80 | ((u      ) & 0x3F));
     }
     else 
     {
         PUTC(c, 0xF0 | ((u >> 18) & 0x07));
         PUTC(c, 0x80 | ((u >> 12) & 0x3F));
-        PUTC(c, 0x80 | ((u >> 6) & 0x3F));
-        PUTC(c, 0x80 | ((u) & 0x3F));
+        PUTC(c, 0x80 | ((u >> 6 ) & 0x3F));
+        PUTC(c, 0x80 | ((u      ) & 0x3F));
     }
 }
 
