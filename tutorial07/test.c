@@ -383,6 +383,7 @@ static void test_parse() {
     } while(0)
 
 static void test_stringify_number() {
+    _set_output_format(_TWO_DIGIT_EXPONENT);
     TEST_ROUNDTRIP("0");
     TEST_ROUNDTRIP("-0");
     TEST_ROUNDTRIP("1");
