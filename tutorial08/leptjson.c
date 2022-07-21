@@ -427,7 +427,6 @@ void lept_copy(lept_value* dst, const lept_value* src) {
             lept_set_array(dst, src->u.a.capacity);
             for (index = 0; index < src->u.a.size; index++)
             {
-                lept_init(&dst->u.a.e[index]);
                 lept_copy(&dst->u.a.e[index], &src->u.a.e[index]);
             }
             dst->u.a.size = src->u.a.size;
@@ -440,7 +439,7 @@ void lept_copy(lept_value* dst, const lept_value* src) {
                 dst->u.o.m[index].k = (char*)malloc(src->u.o.m[index].klen+1);
                 memcpy(dst->u.o.m[index].k, src->u.o.m[index].k, src->u.o.m[index].klen+1);
                 dst->u.o.m[index].klen = src->u.o.m[index].klen;
-                lept_init(&dst->u.o.m[index].v);
+                lept_init(&dst->u.o.m[index].v); /*很关键，需要注意，否则*/
                 lept_copy(&dst->u.o.m[index].v, &src->u.o.m[index].v);
             }
             dst->u.o.size = src->u.o.size;
