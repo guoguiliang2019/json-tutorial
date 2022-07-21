@@ -352,7 +352,11 @@ static void test_parse() {
     test_parse_number();
     test_parse_string();
     test_parse_array();
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     test_parse_object();
 #endif
 
@@ -366,7 +370,11 @@ static void test_parse() {
     test_parse_invalid_unicode_hex();
     test_parse_invalid_unicode_surrogate();
     test_parse_miss_comma_or_square_bracket();
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     test_parse_miss_key();
     test_parse_miss_colon();
     test_parse_miss_comma_or_curly_bracket();

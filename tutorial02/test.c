@@ -70,6 +70,7 @@ static void test_parse_number() {
     TEST_NUMBER(1.234E+10, "1.234E+10");
     TEST_NUMBER(1.234E-10, "1.234E-10");
     TEST_NUMBER(0.0, "1e-10000"); /* must underflow */
+<<<<<<< HEAD
     TEST_NUMBER(1.0000000000000002, "1.0000000000000002");
     TEST_NUMBER(-1.0000000000000002, "-1.0000000000000002");
     TEST_NUMBER(4.9406564584124654e-324, "4.9406564584124654e-324");
@@ -80,6 +81,8 @@ static void test_parse_number() {
     TEST_NUMBER(-2.2250738585072014e-308, "-2.2250738585072014e-308");
     TEST_NUMBER(1.7976931348623157e+308, "1.7976931348623157e+308");
     TEST_NUMBER(-1.7976931348623157e+308, "-1.7976931348623157e+308");
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 }
 
 #define TEST_ERROR(error, json)\
@@ -99,7 +102,11 @@ static void test_parse_invalid_value() {
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "nul");
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "?");
 
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     /* invalid number */
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "+0");
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "+1");
@@ -115,17 +122,28 @@ static void test_parse_invalid_value() {
 static void test_parse_root_not_singular() {
     TEST_ERROR(LEPT_PARSE_ROOT_NOT_SINGULAR, "null x");
 
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     /* invalid number */
     TEST_ERROR(LEPT_PARSE_ROOT_NOT_SINGULAR, "0123"); /* after zero should be '.' , 'E' , 'e' or nothing */
     TEST_ERROR(LEPT_PARSE_ROOT_NOT_SINGULAR, "0x0");
     TEST_ERROR(LEPT_PARSE_ROOT_NOT_SINGULAR, "0x123");
+<<<<<<< HEAD
     TEST_ERROR(LEPT_PARSE_ROOT_NOT_SINGULAR, "121.12.33");
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 #endif
 }
 
 static void test_parse_number_too_big() {
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     TEST_ERROR(LEPT_PARSE_NUMBER_TOO_BIG, "1e309");
     TEST_ERROR(LEPT_PARSE_NUMBER_TOO_BIG, "-1e309");
 #endif

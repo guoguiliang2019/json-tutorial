@@ -129,12 +129,16 @@ static void test_parse_string() {
 
 static void test_parse_array() {
     lept_value v;
+<<<<<<< HEAD
     size_t i, j;
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 
     lept_init(&v);
     EXPECT_EQ_INT(LEPT_PARSE_OK, lept_parse(&v, "[ ]"));
     EXPECT_EQ_INT(LEPT_ARRAY, lept_get_type(&v));
     EXPECT_EQ_SIZE_T(0, lept_get_array_size(&v));
+<<<<<<< HEAD
 
     lept_init(&v);
     EXPECT_EQ_INT(LEPT_PARSE_OK, lept_parse(&v, "[ null , false , true , 123 , \"abc\" ]"));
@@ -166,6 +170,8 @@ static void test_parse_array() {
             EXPECT_EQ_DOUBLE((double)j, lept_get_number(e));
         }
     }
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     lept_free(&v);
 }
 
@@ -199,7 +205,11 @@ static void test_parse_invalid_value() {
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "nan");
 
     /* invalid value in array */
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "[1,]");
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "[\"a\", nul]");
 #endif

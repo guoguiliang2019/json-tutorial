@@ -347,6 +347,7 @@ int lept_parse(lept_value* v, const char* json) {
 }
 
 static void lept_stringify_string(lept_context* c, const char* s, size_t len) {
+<<<<<<< HEAD
     /* 设置16进制位的字符数组 */
     static const char hex_digits[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
     size_t i, size;
@@ -384,10 +385,17 @@ static void lept_stringify_string(lept_context* c, const char* s, size_t len) {
 
 static void lept_stringify_value(lept_context* c, const lept_value* v) {
     size_t i;
+=======
+    /* ... */
+}
+
+static void lept_stringify_value(lept_context* c, const lept_value* v) {
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     switch (v->type) {
         case LEPT_NULL:   PUTS(c, "null",  4); break;
         case LEPT_FALSE:  PUTS(c, "false", 5); break;
         case LEPT_TRUE:   PUTS(c, "true",  4); break;
+<<<<<<< HEAD
         case LEPT_NUMBER: 
             /* 序列化数字 */
             c->top -= 32 - sprintf(lept_context_push(c, 32), "%.17g", v->u.n); 
@@ -417,6 +425,15 @@ static void lept_stringify_value(lept_context* c, const lept_value* v) {
                 lept_stringify_value(c, &v->u.o.m[i].v);
             }
             PUTC(c, '}');
+=======
+        case LEPT_NUMBER: c->top -= 32 - sprintf(lept_context_push(c, 32), "%.17g", v->u.n); break;
+        case LEPT_STRING: lept_stringify_string(c, v->u.s.s, v->u.s.len); break;
+        case LEPT_ARRAY:
+            /* ... */
+            break;
+        case LEPT_OBJECT:
+            /* ... */
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
             break;
         default: assert(0 && "invalid type");
     }

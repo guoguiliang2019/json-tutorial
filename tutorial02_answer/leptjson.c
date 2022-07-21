@@ -4,24 +4,33 @@
 #include <math.h>    /* HUGE_VAL */
 #include <stdlib.h>  /* NULL, strtod() */
 
+<<<<<<< HEAD
 /**
  * @brief 辅助宏定义
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 #define EXPECT(c, ch)       do { assert(*c->json == (ch)); c->json++; } while(0)
 #define ISDIGIT(ch)         ((ch) >= '0' && (ch) <= '9')
 #define ISDIGIT1TO9(ch)     ((ch) >= '1' && (ch) <= '9')
 
+<<<<<<< HEAD
 /*被解析的json数据*/
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 typedef struct {
     const char* json;
 }lept_context;
 
+<<<<<<< HEAD
 /**
  * @brief 跳过解析数据头部的空白字符
  * 
  * @param c 被解析的数据
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void lept_parse_whitespace(lept_context* c) {
     const char *p = c->json;
     while (*p == ' ' || *p == '\t' || *p == '\n' || *p == '\r')
@@ -29,6 +38,7 @@ static void lept_parse_whitespace(lept_context* c) {
     c->json = p;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 解析字面量类型的json数据
  * 
@@ -46,11 +56,20 @@ static int lept_parse_literal(lept_context* c, lept_value* v, const char* litera
         if (c->json[i] != literal[i + 1])
             return LEPT_PARSE_INVALID_VALUE;
     /*修改相关数据的状态*/
+=======
+static int lept_parse_literal(lept_context* c, lept_value* v, const char* literal, lept_type type) {
+    size_t i;
+    EXPECT(c, literal[0]);
+    for (i = 0; literal[i + 1]; i++)
+        if (c->json[i] != literal[i + 1])
+            return LEPT_PARSE_INVALID_VALUE;
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     c->json += i;
     v->type = type;
     return LEPT_PARSE_OK;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 解析数值类型的json数据
  * 这里的数值检查使用了模块化的思维，按照数值的语法，将数值检查分成负号、整数、小数、指数四部分
@@ -64,24 +83,36 @@ static int lept_parse_number(lept_context* c, lept_value* v) {
     /*开始时，若指针指向负号，向后移动指针*/
     if (*p == '-') p++;
     /*整数部分，若整数首字符是0，则转至小数部分；否则逐一验证整数部分的数字*/
+=======
+static int lept_parse_number(lept_context* c, lept_value* v) {
+    const char* p = c->json;
+    if (*p == '-') p++;
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     if (*p == '0') p++;
     else {
         if (!ISDIGIT1TO9(*p)) return LEPT_PARSE_INVALID_VALUE;
         for (p++; ISDIGIT(*p); p++);
     }
+<<<<<<< HEAD
     /*小数部分*/
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     if (*p == '.') {
         p++;
         if (!ISDIGIT(*p)) return LEPT_PARSE_INVALID_VALUE;
         for (p++; ISDIGIT(*p); p++);
     }
+<<<<<<< HEAD
     /*指数部分*/
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     if (*p == 'e' || *p == 'E') {
         p++;
         if (*p == '+' || *p == '-') p++;
         if (!ISDIGIT(*p)) return LEPT_PARSE_INVALID_VALUE;
         for (p++; ISDIGIT(*p); p++);
     }
+<<<<<<< HEAD
     /*解析数值*/
     errno = 0;
     v->n = strtod(c->json, NULL);
@@ -89,11 +120,18 @@ static int lept_parse_number(lept_context* c, lept_value* v) {
     if (errno == ERANGE && (v->n == HUGE_VAL || v->n == -HUGE_VAL))
         return LEPT_PARSE_NUMBER_TOO_BIG;
     /*更新相关的状态*/
+=======
+    errno = 0;
+    v->n = strtod(c->json, NULL);
+    if (errno == ERANGE && (v->n == HUGE_VAL || v->n == -HUGE_VAL))
+        return LEPT_PARSE_NUMBER_TOO_BIG;
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     v->type = LEPT_NUMBER;
     c->json = p;
     return LEPT_PARSE_OK;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 解析器的核心部分
  * 
@@ -101,6 +139,8 @@ static int lept_parse_number(lept_context* c, lept_value* v) {
  * @param v 
  * @return int 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static int lept_parse_value(lept_context* c, lept_value* v) {
     switch (*c->json) {
         case 't':  return lept_parse_literal(c, v, "true", LEPT_TRUE);
@@ -111,6 +151,7 @@ static int lept_parse_value(lept_context* c, lept_value* v) {
     }
 }
 
+<<<<<<< HEAD
 /**
  * @brief json解析API
  * 
@@ -118,6 +159,8 @@ static int lept_parse_value(lept_context* c, lept_value* v) {
  * @param json 
  * @return int 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 int lept_parse(lept_value* v, const char* json) {
     lept_context c;
     int ret;
@@ -135,23 +178,29 @@ int lept_parse(lept_value* v, const char* json) {
     return ret;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 获取json值的类型
  * 
  * @param v 
  * @return lept_type 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 lept_type lept_get_type(const lept_value* v) {
     assert(v != NULL);
     return v->type;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 获取json数值
  * 
  * @param v 
  * @return double 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 double lept_get_number(const lept_value* v) {
     assert(v != NULL && v->type == LEPT_NUMBER);
     return v->n;

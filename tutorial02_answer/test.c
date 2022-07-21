@@ -7,10 +7,13 @@ static int main_ret = 0;
 static int test_count = 0;
 static int test_pass = 0;
 
+<<<<<<< HEAD
 /**
  * @brief 测试函数核心部分
  * 改变测试总计数，通过测试数，打印失败的测试结果
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 #define EXPECT_EQ_BASE(equality, expect, actual, format) \
     do {\
         test_count++;\
@@ -22,6 +25,7 @@ static int test_pass = 0;
         }\
     } while(0)
 
+<<<<<<< HEAD
 /**
  * @brief int/double的测试API
  * 
@@ -33,6 +37,11 @@ static int test_pass = 0;
  * @brief null的解析结果测试
  * 
  */
+=======
+#define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
+#define EXPECT_EQ_DOUBLE(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%.17g")
+
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_null() {
     lept_value v;
     v.type = LEPT_FALSE;
@@ -40,10 +49,13 @@ static void test_parse_null() {
     EXPECT_EQ_INT(LEPT_NULL, lept_get_type(&v));
 }
 
+<<<<<<< HEAD
 /**
  * @brief true的解析结果测试
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_true() {
     lept_value v;
     v.type = LEPT_FALSE;
@@ -51,10 +63,13 @@ static void test_parse_true() {
     EXPECT_EQ_INT(LEPT_TRUE, lept_get_type(&v));
 }
 
+<<<<<<< HEAD
 /**
  * @brief false的解析结果测试
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_false() {
     lept_value v;
     v.type = LEPT_TRUE;
@@ -62,10 +77,13 @@ static void test_parse_false() {
     EXPECT_EQ_INT(LEPT_FALSE, lept_get_type(&v));
 }
 
+<<<<<<< HEAD
 /**
  * @brief 数值类型的测试API
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 #define TEST_NUMBER(expect, json)\
     do {\
         lept_value v;\
@@ -74,10 +92,13 @@ static void test_parse_false() {
         EXPECT_EQ_DOUBLE(expect, lept_get_number(&v));\
     } while(0)
 
+<<<<<<< HEAD
 /**
  * @brief 数值类型的正确性测试
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_number() {
     TEST_NUMBER(0.0, "0");
     TEST_NUMBER(0.0, "-0");
@@ -110,10 +131,13 @@ static void test_parse_number() {
     TEST_NUMBER(-1.7976931348623157e+308, "-1.7976931348623157e+308");
 }
 
+<<<<<<< HEAD
 /**
  * @brief 错误的测试API
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 #define TEST_ERROR(error, json)\
     do {\
         lept_value v;\
@@ -122,19 +146,25 @@ static void test_parse_number() {
         EXPECT_EQ_INT(LEPT_NULL, lept_get_type(&v));\
     } while(0)
 
+<<<<<<< HEAD
 /**
  * @brief 非预期值错误的测试
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_expect_value() {
     TEST_ERROR(LEPT_PARSE_EXPECT_VALUE, "");
     TEST_ERROR(LEPT_PARSE_EXPECT_VALUE, " ");
 }
 
+<<<<<<< HEAD
 /**
  * @brief 无效值错误的测试
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_invalid_value() {
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "nul");
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "?");
@@ -150,10 +180,13 @@ static void test_parse_invalid_value() {
     TEST_ERROR(LEPT_PARSE_INVALID_VALUE, "nan");
 }
 
+<<<<<<< HEAD
 /**
  * @brief 结尾符错误的测试
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_root_not_singular() {
     TEST_ERROR(LEPT_PARSE_ROOT_NOT_SINGULAR, "null x");
 
@@ -163,19 +196,25 @@ static void test_parse_root_not_singular() {
     TEST_ERROR(LEPT_PARSE_ROOT_NOT_SINGULAR, "0x123");
 }
 
+<<<<<<< HEAD
 /**
  * @brief 过大数错误的测试
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_number_too_big() {
     TEST_ERROR(LEPT_PARSE_NUMBER_TOO_BIG, "1e309");
     TEST_ERROR(LEPT_PARSE_NUMBER_TOO_BIG, "-1e309");
 }
 
+<<<<<<< HEAD
 /**
  * @brief 全部的单元测试调用过程
  * 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse() {
     test_parse_null();
     test_parse_true();
@@ -187,11 +226,14 @@ static void test_parse() {
     test_parse_number_too_big();
 }
 
+<<<<<<< HEAD
 /**
  * @brief 测试的主函数
  * 
  * @return int 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 int main() {
     test_parse();
     printf("%d/%d (%3.2f%%) passed\n", test_pass, test_count, test_pass * 100.0 / test_count);

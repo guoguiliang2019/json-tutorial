@@ -3,11 +3,18 @@
 #include <string.h>
 #include "leptjson.h"
 
+<<<<<<< HEAD
 static int main_ret = 0;     
 static int test_count = 0;   
 static int test_pass = 0;    
 
 /*测试的核心函数*/
+=======
+static int main_ret = 0;
+static int test_count = 0;
+static int test_pass = 0;
+
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 #define EXPECT_EQ_BASE(equality, expect, actual, format) \
     do {\
         test_count++;\
@@ -19,10 +26,15 @@ static int test_pass = 0;
         }\
     } while(0)
 
+<<<<<<< HEAD
 /* 测试的包装接口 */
 #define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
 
 /*解析“null”的测试*/
+=======
+#define EXPECT_EQ_INT(expect, actual) EXPECT_EQ_BASE((expect) == (actual), expect, actual, "%d")
+
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_null() {
     lept_value v;
     v.type = LEPT_FALSE;
@@ -30,7 +42,10 @@ static void test_parse_null() {
     EXPECT_EQ_INT(LEPT_NULL, lept_get_type(&v));
 }
 
+<<<<<<< HEAD
 /*解析空字符串的测试*/
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_expect_value() {
     lept_value v;
 
@@ -43,8 +58,11 @@ static void test_parse_expect_value() {
     EXPECT_EQ_INT(LEPT_NULL, lept_get_type(&v));
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse_invalid_value() {
     lept_value v;
     v.type = LEPT_FALSE;
@@ -63,6 +81,7 @@ static void test_parse_root_not_singular() {
     EXPECT_EQ_INT(LEPT_NULL, lept_get_type(&v));
 }
 
+<<<<<<< HEAD
 static void test_parse_true() {
     lept_value v;
     v.type = LEPT_NULL;
@@ -85,14 +104,19 @@ static void test_parse_false() {
     EXPECT_EQ_INT(LEPT_FALSE, lept_get_type(&v));
 }
 
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse() {
     test_parse_null();
     test_parse_expect_value();
     test_parse_invalid_value();
     test_parse_root_not_singular();
+<<<<<<< HEAD
 
     test_parse_true();
     test_parse_false();
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 }
 
 int main() {

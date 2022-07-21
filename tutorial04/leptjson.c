@@ -8,7 +8,10 @@
 #include <math.h>    /* HUGE_VAL */
 #include <stdlib.h>  /* NULL, malloc(), realloc(), free(), strtod() */
 #include <string.h>  /* memcpy() */
+<<<<<<< HEAD
 #include <ctype.h>
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 
 #ifndef LEPT_PARSE_STACK_INIT_SIZE
 #define LEPT_PARSE_STACK_INIT_SIZE 256
@@ -93,6 +96,7 @@ static int lept_parse_number(lept_context* c, lept_value* v) {
 
 static const char* lept_parse_hex4(const char* p, unsigned* u) {
     /* \TODO */
+<<<<<<< HEAD
     size_t i;
     char ch;
     *u = 0;
@@ -105,11 +109,14 @@ static const char* lept_parse_hex4(const char* p, unsigned* u) {
         else if (ch >= 'A' && ch <= 'F')  *u |= ch - 'A' + 10;
         else    return NULL;
     }
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     return p;
 }
 
 static void lept_encode_utf8(lept_context* c, unsigned u) {
     /* \TODO */
+<<<<<<< HEAD
     assert(u < 0x110000);
     
     if(u < 0x80)
@@ -134,6 +141,8 @@ static void lept_encode_utf8(lept_context* c, unsigned u) {
         PUTC(c, 0x80 | ((u >> 6 ) & 0x3F));
         PUTC(c, 0x80 | ((u      ) & 0x3F));
     }
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 }
 
 #define STRING_ERROR(ret) do { c->top = head; return ret; } while(0)
@@ -141,7 +150,10 @@ static void lept_encode_utf8(lept_context* c, unsigned u) {
 static int lept_parse_string(lept_context* c, lept_value* v) {
     size_t head = c->top, len;
     unsigned u;
+<<<<<<< HEAD
     unsigned high, low;
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     const char* p;
     EXPECT(c, '\"');
     p = c->json;
@@ -167,6 +179,7 @@ static int lept_parse_string(lept_context* c, lept_value* v) {
                         if (!(p = lept_parse_hex4(p, &u)))
                             STRING_ERROR(LEPT_PARSE_INVALID_UNICODE_HEX);
                         /* \TODO surrogate handling */
+<<<<<<< HEAD
                         if(u > 0xD7FF && u < 0xDC00)
                         {
                             high = u;
@@ -180,6 +193,8 @@ static int lept_parse_string(lept_context* c, lept_value* v) {
                                 return LEPT_PARSE_INVALID_UNICODE_SURROGATE;
                             u = 0x10000 + (high - 0xD800) * 0x400 + (low - 0xDC00);
                         }
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
                         lept_encode_utf8(c, u);
                         break;
                     default:
@@ -202,7 +217,11 @@ static int lept_parse_value(lept_context* c, lept_value* v) {
         case 'f':  return lept_parse_literal(c, v, "false", LEPT_FALSE);
         case 'n':  return lept_parse_literal(c, v, "null", LEPT_NULL);
         default:   return lept_parse_number(c, v);
+<<<<<<< HEAD
         case '\"': return lept_parse_string(c, v);
+=======
+        case '"':  return lept_parse_string(c, v);
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
         case '\0': return LEPT_PARSE_EXPECT_VALUE;
     }
 }

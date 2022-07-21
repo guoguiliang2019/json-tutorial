@@ -18,7 +18,11 @@
 此单元是本教程最后一个关于 JSON 解析器的部分。JSON 对象和 JSON 数组非常相似，区别包括 JSON 对象以花括号 `{}`（`U+007B`、`U+007D`）包裹表示，另外 JSON 对象由对象成员（member）组成，而 JSON 数组由 JSON 值组成。所谓对象成员，就是键值对，键必须为 JSON 字符串，然后值是任何 JSON 值，中间以冒号 `:`（`U+003A`）分隔。完整语法如下：
 
 ~~~
+<<<<<<< HEAD
 member = string ws %x3A ws value 
+=======
+member = string ws %x3A ws value
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 object = %x7B ws [ member *( ws %x2C ws member ) ] ws %x7D
 ~~~
 
@@ -157,9 +161,15 @@ static int lept_parse_object(lept_context* c, lept_value* v) {
 ~~~c
 enum {
     /* ... */
+<<<<<<< HEAD
     LEPT_PARSE_MISS_KEY,//缺少键值
     LEPT_PARSE_MISS_COLON,//缺少冒号
     LEPT_PARSE_MISS_COMMA_OR_CURLY_BRACKET//缺少逗号或者右大括号
+=======
+    LEPT_PARSE_MISS_KEY,
+    LEPT_PARSE_MISS_COLON,
+    LEPT_PARSE_MISS_COMMA_OR_CURLY_BRACKET
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 };
 ~~~
 

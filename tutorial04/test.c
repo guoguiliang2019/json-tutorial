@@ -205,7 +205,10 @@ static void test_parse_invalid_unicode_surrogate() {
     TEST_ERROR(LEPT_PARSE_INVALID_UNICODE_SURROGATE, "\"\\uD800\\uE000\"");
 }
 
+<<<<<<< HEAD
 /*json解析函数的测试*/
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_parse() {
     test_parse_null();
     test_parse_true();
@@ -262,7 +265,10 @@ static void test_access_string() {
     lept_free(&v);
 }
 
+<<<<<<< HEAD
 /*json值的访问函数的测试*/
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void test_access() {
     test_access_null();
     test_access_boolean();

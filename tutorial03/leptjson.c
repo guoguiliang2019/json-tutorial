@@ -16,11 +16,15 @@
 
 typedef struct {
     const char* json;
+<<<<<<< HEAD
     /*堆栈缓冲区和栈大小、栈顶位置*/
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     char* stack;
     size_t size, top;
 }lept_context;
 
+<<<<<<< HEAD
 /**
  * @brief  
  * 
@@ -28,6 +32,8 @@ typedef struct {
  * @param size 
  * @return void* 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void* lept_context_push(lept_context* c, size_t size) {
     void* ret;
     assert(size > 0);
@@ -43,6 +49,7 @@ static void* lept_context_push(lept_context* c, size_t size) {
     return ret;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 出栈,设置栈顶位置，返回栈顶指针
  * 
@@ -50,6 +57,8 @@ static void* lept_context_push(lept_context* c, size_t size) {
  * @param size 
  * @return void* 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static void* lept_context_pop(lept_context* c, size_t size) {
     assert(c->top >= size);
     return c->stack + (c->top -= size);
@@ -62,6 +71,7 @@ static void lept_parse_whitespace(lept_context* c) {
     c->json = p;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 解析文本量
  * 
@@ -71,6 +81,8 @@ static void lept_parse_whitespace(lept_context* c) {
  * @param type 
  * @return int 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static int lept_parse_literal(lept_context* c, lept_value* v, const char* literal, lept_type type) {
     size_t i;
     EXPECT(c, literal[0]);
@@ -82,6 +94,7 @@ static int lept_parse_literal(lept_context* c, lept_value* v, const char* litera
     return LEPT_PARSE_OK;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 解析数值
  * 
@@ -89,6 +102,8 @@ static int lept_parse_literal(lept_context* c, lept_value* v, const char* litera
  * @param v 
  * @return int 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static int lept_parse_number(lept_context* c, lept_value* v) {
     const char* p = c->json;
     if (*p == '-') p++;
@@ -117,6 +132,7 @@ static int lept_parse_number(lept_context* c, lept_value* v) {
     return LEPT_PARSE_OK;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 解析字符串
  * 
@@ -124,6 +140,8 @@ static int lept_parse_number(lept_context* c, lept_value* v) {
  * @param v 
  * @return int 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static int lept_parse_string(lept_context* c, lept_value* v) {
     size_t head = c->top, len;
     const char* p;
@@ -140,6 +158,7 @@ static int lept_parse_string(lept_context* c, lept_value* v) {
             case '\0':
                 c->top = head;
                 return LEPT_PARSE_MISS_QUOTATION_MARK;
+<<<<<<< HEAD
             case '\\':
                 /*其后方是一个转义序列*/
             {
@@ -174,11 +193,15 @@ static int lept_parse_string(lept_context* c, lept_value* v) {
                     c->top = head;
                     return LEPT_PARSE_INVALID_STRING_CHAR;
                 }
+=======
+            default:
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
                 PUTC(c, ch);
         }
     }
 }
 
+<<<<<<< HEAD
 /**
  * @brief 解析器的状态机
  * 
@@ -186,11 +209,14 @@ static int lept_parse_string(lept_context* c, lept_value* v) {
  * @param v 
  * @return int 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 static int lept_parse_value(lept_context* c, lept_value* v) {
     switch (*c->json) {
         case 't':  return lept_parse_literal(c, v, "true", LEPT_TRUE);
         case 'f':  return lept_parse_literal(c, v, "false", LEPT_FALSE);
         case 'n':  return lept_parse_literal(c, v, "null", LEPT_NULL);
+<<<<<<< HEAD
         case '"':  return lept_parse_string(c, v);
         case '\0': return LEPT_PARSE_EXPECT_VALUE;
         default:   return lept_parse_number(c, v);
@@ -201,6 +227,14 @@ static int lept_parse_value(lept_context* c, lept_value* v) {
  * @brief 解析器API
  * 
  */
+=======
+        default:   return lept_parse_number(c, v);
+        case '"':  return lept_parse_string(c, v);
+        case '\0': return LEPT_PARSE_EXPECT_VALUE;
+    }
+}
+
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 int lept_parse(lept_value* v, const char* json) {
     lept_context c;
     int ret;
@@ -222,11 +256,14 @@ int lept_parse(lept_value* v, const char* json) {
     return ret;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 释放json值空间
  * 
  * @param v 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 void lept_free(lept_value* v) {
     assert(v != NULL);
     if (v->type == LEPT_STRING)
@@ -234,17 +271,21 @@ void lept_free(lept_value* v) {
     v->type = LEPT_NULL;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 获取json值类型
  * 
  * @param v 
  * @return lept_type 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 lept_type lept_get_type(const lept_value* v) {
     assert(v != NULL);
     return v->type;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 获取bool类型的json值
  * 
@@ -278,11 +319,23 @@ void lept_set_boolean(lept_value* v, int b) {
  * @param v 
  * @return double 
  */
+=======
+int lept_get_boolean(const lept_value* v) {
+    /* \TODO */
+    return 0;
+}
+
+void lept_set_boolean(lept_value* v, int b) {
+    /* \TODO */
+}
+
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 double lept_get_number(const lept_value* v) {
     assert(v != NULL && v->type == LEPT_NUMBER);
     return v->u.n;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 设置number类型的json值
  * 
@@ -302,22 +355,32 @@ void lept_set_number(lept_value* v, double n) {
  * @param v 
  * @return const char* 
  */
+=======
+void lept_set_number(lept_value* v, double n) {
+    /* \TODO */
+}
+
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 const char* lept_get_string(const lept_value* v) {
     assert(v != NULL && v->type == LEPT_STRING);
     return v->u.s.s;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 获取string类型json值的长度
  * 
  * @param v 
  * @return size_t 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 size_t lept_get_string_length(const lept_value* v) {
     assert(v != NULL && v->type == LEPT_STRING);
     return v->u.s.len;
 }
 
+<<<<<<< HEAD
 /**
  * @brief 设置string类型的json值
  * 
@@ -325,6 +388,8 @@ size_t lept_get_string_length(const lept_value* v) {
  * @param s 
  * @param len 
  */
+=======
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 void lept_set_string(lept_value* v, const char* s, size_t len) {
     assert(v != NULL && (s != NULL || len == 0));
     lept_free(v);

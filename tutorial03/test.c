@@ -107,7 +107,11 @@ static void test_parse_number() {
 static void test_parse_string() {
     TEST_STRING("", "\"\"");
     TEST_STRING("Hello", "\"Hello\"");
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     TEST_STRING("Hello\nWorld", "\"Hello\\nWorld\"");
     TEST_STRING("\" \\ / \b \f \n \r \t", "\"\\\" \\\\ \\/ \\b \\f \\n \\r \\t\"");
 #endif
@@ -163,7 +167,11 @@ static void test_parse_missing_quotation_mark() {
 }
 
 static void test_parse_invalid_string_escape() {
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     TEST_ERROR(LEPT_PARSE_INVALID_STRING_ESCAPE, "\"\\v\"");
     TEST_ERROR(LEPT_PARSE_INVALID_STRING_ESCAPE, "\"\\'\"");
     TEST_ERROR(LEPT_PARSE_INVALID_STRING_ESCAPE, "\"\\0\"");
@@ -172,7 +180,11 @@ static void test_parse_invalid_string_escape() {
 }
 
 static void test_parse_invalid_string_char() {
+<<<<<<< HEAD
 #if 1
+=======
+#if 0
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     TEST_ERROR(LEPT_PARSE_INVALID_STRING_CHAR, "\"\x01\"");
     TEST_ERROR(LEPT_PARSE_INVALID_STRING_CHAR, "\"\x1F\"");
 #endif
@@ -188,6 +200,7 @@ static void test_access_null() {
 }
 
 static void test_access_boolean() {
+<<<<<<< HEAD
     lept_value v;
     lept_init(&v);
     lept_set_string(&v, "a", 1);
@@ -208,6 +221,14 @@ static void test_access_number() {
     lept_set_number(&v, 0.12344e12);
     EXPECT_EQ_DOUBLE(0.12344e12, lept_get_number(&v));
     lept_free(&v);
+=======
+    /* \TODO */
+    /* Use EXPECT_TRUE() and EXPECT_FALSE() */
+}
+
+static void test_access_number() {
+    /* \TODO */
+>>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
 }
 
 static void test_access_string() {
