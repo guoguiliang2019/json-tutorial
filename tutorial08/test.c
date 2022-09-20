@@ -383,10 +383,8 @@ static void test_parse() {
     } while(0)
 
 static void test_stringify_number() {
-<<<<<<< HEAD
     _set_output_format(_TWO_DIGIT_EXPONENT);
-=======
->>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
+
     TEST_ROUNDTRIP("0");
     TEST_ROUNDTRIP("-0");
     TEST_ROUNDTRIP("1");
@@ -595,11 +593,8 @@ static void test_access_array() {
     for (i = 0; i < 6; i++)
         EXPECT_EQ_DOUBLE((double)i + 2, lept_get_number(lept_get_array_element(&a, i)));
 
-<<<<<<< HEAD
 #if 1
-=======
-#if 0
->>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
+
     for (i = 0; i < 2; i++) {
         lept_init(&e);
         lept_set_number(&e, i);
@@ -634,11 +629,7 @@ static void test_access_array() {
 }
 
 static void test_access_object() {
-<<<<<<< HEAD
 #if 1
-=======
-#if 0
->>>>>>> e11b43d0ebea1ba876ffd72fcb3907a1da1317ec
     lept_value o, v, *pv;
     size_t i, j, index;
 
